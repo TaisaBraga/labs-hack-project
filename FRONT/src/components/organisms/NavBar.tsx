@@ -15,7 +15,15 @@ export const NavBar = () => {
     <AppBar position="static" style={{ backgroundColor: '#7fb77e' }}>
       <Container maxWidth="xl">
         <Toolbar style={{ justifyContent: 'space-between' }}>
-          <img src={LogoImage} alt='Logo Good 2 go' style={{ width: '6em', marginRight: '2em' }} />
+          <img
+            src={LogoImage}
+            alt='Logo Good 2 go'
+            style={{
+              width: '6em',
+              marginRight: '2em',
+              cursor: 'pointer'
+            }}
+          />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings" sx={{ p: 0, cursor: 'pointer' }}>
               <AccountCircleIcon />

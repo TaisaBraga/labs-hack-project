@@ -1,10 +1,10 @@
 import './App.css';
-import { HomeView } from './components/views/HomeView';
+import GetRoutes from './routes';
 
 function App() {
   return (
     <div className="App">
-      <HomeView />
+      <GetRoutes />
     </div>
   );
 }
