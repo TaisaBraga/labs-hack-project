@@ -1,9 +1,19 @@
-// import axios, { AxiosResponse } from 'axios'
-// import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ProductCard } from '../molecules/ProductCard'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ProductCard } from '../molecules/ProductCard';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { makeStyles } from '@mui/styles';
+import axios from 'axios';
+import noImage from '../../images/sem-imagem.jpg'
+
+interface Product {
+  fornecedor_id: number;
+  id: number;
+  updated_on: string | null;
+  name: string;
+  description: string;
+  created_on: string;
+}
 
 const useStyles = makeStyles(() => ({
   BackPageButton: {
@@ -14,21 +24,32 @@ const useStyles = makeStyles(() => ({
     padding: '21px'
   },
   ProductsList: {
-    padding: '2em',
-  }
-}))
-
-// useEffect(() => {
-//   const getData = async () => {
-//   await axios.get('BASEURL').then((response: AxiosResponse) => {
-//   return setGitRepos(response.data)
-//   })
-//   }
-//   getData()}, [])
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+    gap: '1em',
+    margin: '2em',
+    padding: '2em'
+    
+  },
+}));
 
 export const ProductsPage = () => {
-  const classes = useStyles()
-  const navigate = useNavigate()
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const [isProduct, setIsProduct] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/produto/');
+        setIsProduct(response.data.message);
+      } catch (error) {
+        console.error('Erro ao obter dados da API:', error);
+      }
+    };
+
+    getData();
+  }, []);
 
   return (
     <div>
@@ -45,8 +66,16 @@ export const ProductsPage = () => {
         </span>
       </div>
       <div className={classes.ProductsList}>
-        <ProductCard title={"title"} image={"image"} description={"description"} />
+        {isProduct.map(item => (
+          <div key={item.id}>
+            <ProductCard
+              title={item.name}
+              image={noImage}
+              description={item.description}
+            />
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};

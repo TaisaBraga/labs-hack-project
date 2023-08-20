@@ -57,7 +57,6 @@ export const GetProductsProvider = ({ children }: React.PropsWithChildren) => {
     setCarrinho(mudarQuantidade(novoProduto.id, 1));
 
   }, [carrinho, mudarQuantidade])
-  console.log(carrinho)
 
   const handleFinishShooping = useCallback(() => {
     setIsOpen(!isOpen)

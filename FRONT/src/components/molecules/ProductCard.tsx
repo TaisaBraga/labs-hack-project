@@ -16,7 +16,7 @@ export const ProductCard = (props: IProducts) => {
 
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardMedia
         sx={{ height: 140 }}
         image={props.image}
