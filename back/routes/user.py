@@ -6,7 +6,7 @@ from back.database import models
 from back import schemas
 from back import utils
 
-router = APIRouter()
+router = APIRouter(tags=["Users"])
 
 @router.get("/")
 def get_all(db: Session = Depends(get_db)):
