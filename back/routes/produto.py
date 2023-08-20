@@ -35,6 +35,20 @@ def register_product(product: schemas.ProductEntry, db: Session = Depends(get_db
     except IntegrityError as err:
         raise HTTPException(status_code=409, detail={'message': err.args})
 
+@router.patch("/{product_id}", status_code=202)
+def update_product(product_id: str, product: schemas.ProductUpdate ,db: Session = Depends(get_db)):
+    product_query = db.query(models.Produto).filter(models.Produto.id == product_id)
+    if not product_query.first():
+        raise HTTPException(
+            status_code=404, detail=f"Fornecedor não encontrado"
+        )
+
+    data_dict = product.model_dump(exclude_unset=True)
+    product_query.update(data_dict)
+    
+    db.commit()
+    return {"message": " updated"}
+
 
 @router.delete("/delete/{id}")
 def delete_product(product_id: str, db: Session = Depends(get_db)):

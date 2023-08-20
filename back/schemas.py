@@ -16,3 +16,7 @@ class ProductEntry(BaseModel):
     name: str
     description: str
     fornecedor_id: int
+
+class ProductUpdate(BaseModel):
+    name: Optional[str]
+    description: Optional[str]
