@@ -3,7 +3,7 @@ from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import IntegrityError
 from app.database.database import get_db
 from app.database import models
-from app import schemas
+from back import schemas
 
 @router.post('/register')
 def register_company(user: schemas.CompanyEntry, db: Session = Depends(get_db)):
@@ -15,4 +15,4 @@ def register_company(user: schemas.CompanyEntry, db: Session = Depends(get_db)):
         return {'message': user.dict()}
     except IntegrityError as err:
         raise HTTPException(status_code=409, detail={'message': err.args})
-
+    
