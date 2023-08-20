@@ -6,7 +6,7 @@ from .database.database import engine
 
 app = FastAPI(
     title="Good2Go",
-    version=0.1
+    version="0.1"
 )
 
 models.Base.metadata.create_all(bind=engine)
