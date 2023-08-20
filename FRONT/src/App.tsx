@@ -1,10 +1,13 @@
 import './App.css';
+import { GetProductsProvider } from './components/context/useGetInfoContext';
 import GetRoutes from './routes';
 
 function App() {
   return (
     <div className="App">
-      <GetRoutes />
+      <GetProductsProvider>
+        <GetRoutes />
+      </GetProductsProvider>
     </div>
   );
 }

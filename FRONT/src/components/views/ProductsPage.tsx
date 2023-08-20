@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Roboto, sans-serif',
     padding: '21px'
   },
+  ProductsList: {
+    padding: '2em',
+  }
 }))
 
 // useEffect(() => {
@@ -26,6 +29,7 @@ const useStyles = makeStyles(() => ({
 export const ProductsPage = () => {
   const classes = useStyles()
   const navigate = useNavigate()
+
   return (
     <div>
       <div
@@ -40,7 +44,9 @@ export const ProductsPage = () => {
           Voltar
         </span>
       </div>
-      <ProductCard title={"title"} image={"image"} description={"description"} />
+      <div className={classes.ProductsList}>
+        <ProductCard title={"title"} image={"image"} description={"description"} />
+      </div>
     </div>
   )
 }

@@ -3,15 +3,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useNavigate } from 'react-router-dom';
+import { useGetProductsContext } from '../context/useGetInfoContext';
 
 interface IProducts {
-  title: string,
-  image: string,
-  description: string
+  title?: string,
+  image?: string,
+  description?: string
 }
 
 export const ProductCard = (props: IProducts) => {
+  const { adicionarProduto } = useGetProductsContext()
 
 
   return (
@@ -34,6 +35,7 @@ export const ProductCard = (props: IProducts) => {
           float: 'right',
           cursor: 'pointer'
         }}
+        onClick={adicionarProduto}
 
       />
     </Card>

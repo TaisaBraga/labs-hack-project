@@ -5,6 +5,9 @@ import { makeStyles } from '@mui/styles';
 import shopSolid from '../../images/shop-solid.png'
 import iconeLocal from '../../images/ico-local.png'
 import iconPay from '../../images/ico-pay.png'
+import { useGetProductsContext } from '../context/useGetInfoContext';
+import { ProductCard } from '../molecules/ProductCard';
+import { FinalDialog } from '../molecules/FinalDialog';
 
 const useStyles = makeStyles(() => ({
   HeaderShopCar: {
@@ -48,6 +51,7 @@ const useStyles = makeStyles(() => ({
 export const ShoppingPage = () => {
   const classes = useStyles()
   const navigate = useNavigate()
+  const { carrinho, handleFinishShooping, isOpen } = useGetProductsContext()
   return (
     <div style={{ padding: '2em' }}>
       <div
@@ -68,6 +72,9 @@ export const ShoppingPage = () => {
       </div>
       <div>
         <h3>Produtos selecionados</h3>
+        {carrinho.map((produto) => (
+          <ProductCard {...produto} key={produto.id} />
+        ))}
       </div>
       <div>
         <h3>Agendamento de retirada: </h3>
@@ -87,7 +94,10 @@ export const ShoppingPage = () => {
         </div>
       </div>
       <div className={classes.FinishShopButton}>
-        <button >Finalize o pedido e avalie a compra</button>
+        <button onClick={() => handleFinishShooping()}>Finalize o pedido e avalie a compra</button>
+      </div>
+      <div>
+        {isOpen ? <FinalDialog /> : null}
       </div>
     </div>
   )
