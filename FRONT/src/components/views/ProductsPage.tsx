@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { ProductCard } from '../molecules/ProductCard'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { makeStyles } from '@mui/styles';
+import axios, { AxiosResponse } from 'axios';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles(() => ({
   BackPageButton: {
@@ -18,17 +20,18 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-// useEffect(() => {
-//   const getData = async () => {
-//   await axios.get('BASEURL').then((response: AxiosResponse) => {
-//   return setGitRepos(response.data)
-//   })
-//   }
-//   getData()}, [])
-
 export const ProductsPage = () => {
   const classes = useStyles()
   const navigate = useNavigate()
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     await axios.get('BASEURL').then((response: AxiosResponse) => {
+  //       return setGitRepos(response.data)
+  //     })
+  //   }
+  //   getData()
+  // }, [])
 
   return (
     <div>
