@@ -1,5 +1,6 @@
 import { ProductsList } from "../organisms/ProductsList"
 import { AboutUs } from "../organisms/AboutUs"
+import { HowItWorks } from "../organisms/HowItWorks"
 
 export const HomeView = () => {
   return (
@@ -11,6 +12,7 @@ export const HomeView = () => {
         textAlign: 'center'
       }}>Good2Go</h1>
       <AboutUs />
+      <HowItWorks />
       <ProductsList />
     </div>
   )

@@ -3,6 +3,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import shopSolid from '../../images/shop-solid.png'
+import iconeLocal from '../../images/ico-local.png'
+import iconPay from '../../images/ico-pay.png'
 
 const useStyles = makeStyles(() => ({
   HeaderShopCar: {
@@ -13,8 +15,19 @@ const useStyles = makeStyles(() => ({
     padding: '1px'
   },
   PresentationText: {
-    fontFamily: 'Secular One, sans-serif',
-    fontWeight: 'bold'
+    margin: '2.5em',
+    '& span': {
+      fontFamily: 'Secular One, sans-serif',
+      fontSize: '3em',
+      fontWeight: 'bold'
+    },
+  },
+  SupplyInfomation: {
+    display: 'flex',
+    marginBottom: '1.5em',
+    '& div': {
+      marginLeft: '1em',
+    }
   },
   FinishShopButton: {
     display: 'flex',
@@ -57,9 +70,21 @@ export const ShoppingPage = () => {
         <h3>Produtos selecionados</h3>
       </div>
       <div>
-        <h3>Agendamento de retirada</h3>
-        <p>Local</p>
-        <p>Data e horário</p>
+        <h3>Agendamento de retirada: </h3>
+        <div className={classes.SupplyInfomation}>
+          <img src={iconeLocal} alt='Icone local' />
+          <div>
+            <p style={{ fontWeight: 'bold' }}>Local: </p>
+            <p style={{ fontWeight: 'bold' }}>Data e horário: </p>
+          </div>
+        </div>
+        <div className={classes.SupplyInfomation}>
+          <img src={iconPay} alt='Icone pagamento' />
+          <div>
+            <p style={{ fontWeight: 'bold' }}>Pagamento na retirada</p>
+            <p>Não aceitamos pagamento via plataforma, desconfie de qualquer solicitação de cadastro do seu cartão nesta página</p>
+          </div>
+        </div>
       </div>
       <div className={classes.FinishShopButton}>
         <button >Finalize o pedido e avalie a compra</button>
