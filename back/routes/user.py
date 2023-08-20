@@ -54,3 +54,18 @@ def update_user(user_id: str, user: schemas.UserUpdate, db: Session = Depends(ge
     db.commit()
     
     return {"message": "updated"}
+
+@router.delete("/{id}", status_code=204)
+def delete_product(user_id: str, db: Session = Depends(get_db), current_user: int= Depends(current_User)):
+    user_query = db.query(models.User).filter_by(email = current_user.email)
+    if current_user.email != user_query.first().email:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail={'message': 'Operação não autorizada'})
+
+    if not user_query.first():
+        raise HTTPException(
+            status_code=404, detail=f"Ususario não encontrado"
+        )
+    
+    db.delete(user_query.first())
+    db.commit()
+    return Response(status_code=204)
