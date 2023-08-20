@@ -11,3 +11,4 @@ NPM START
 para executar o aplicativo no modo de desenvolvimento.
 Abra http://localhost:3000 para visualizá-lo no navegador.
 
+<img src="./public/HomePage.jpeg">
