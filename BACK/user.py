@@ -5,7 +5,7 @@ from app.database.database import get_db
 from app.database import models
 from app import schemas
 
-@router.register('/register')
+@router.post('/register')
 def register_company(user: schemas.CompanyEntry, db: Session = Depends(get_db)):
     user = db.query(models.Company).all()
     db.add(new)
@@ -16,4 +16,3 @@ def register_company(user: schemas.CompanyEntry, db: Session = Depends(get_db)):
     except IntegrityError as err:
         raise HTTPException(status_code=409, detail={'message': err.args})
     
-
