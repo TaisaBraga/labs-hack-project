@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     maxWidth: "75em",
     margin: "0 auto",
     marginTop: '5em',
+    marginBottom: '5em',
     '& h3': {
       color: '#7FB77E',
       fontSize: '40px',
