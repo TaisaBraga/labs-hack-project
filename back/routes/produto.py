@@ -55,13 +55,16 @@ def update_product(product_id: str, product: schemas.ProductUpdate ,db: Session 
 
 
 @router.delete("/delete/{id}")
-def delete_product(product_id: str, db: Session = Depends(get_db)):
-    requested = db.query(models.Produto).filter(models.Produto.id == product_id).first()
-    if not requested:
+def delete_product(product_id: str, db: Session = Depends(get_db), current_user: int= Depends(current_User)):
+    product_query = db.query(models.Produto).filter(models.Produto.id == product_id)
+    if current_user.email != product_query.first().fornecedor.email:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail={'message': 'Operação não autorizada'})
+
+    if not product_query.first():
         raise HTTPException(
             status_code=404, detail=f"Fornecedor não encontrado"
         )
     
-    db.delete(requested)
+    db.delete(product_query.first())
     db.commit()
     return Response(status_code=204)
