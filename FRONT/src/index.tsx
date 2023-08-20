@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { NavBar } from './components/organisms/NavBar';
 import { BrowserRouter } from 'react-router-dom';
+import { Footer } from './components/organisms/Footer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,6 +14,7 @@ root.render(
   <BrowserRouter>
     <NavBar />
     <App />
+    <Footer />
   </BrowserRouter>
 );
 
