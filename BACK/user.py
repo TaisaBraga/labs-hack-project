@@ -15,4 +15,4 @@ def register_company(user: schemas.CompanyEntry, db: Session = Depends(get_db)):
         return {'message': user.dict()}
     except IntegrityError as err:
         raise HTTPException(status_code=409, detail={'message': err.args})
-    
+
