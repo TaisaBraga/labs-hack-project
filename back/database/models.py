@@ -11,9 +11,9 @@ class User(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
-    address = Column(String)
+    address = Column(String, nullable=True)
     is_fornecedor = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
     produtos_info = relationship(
