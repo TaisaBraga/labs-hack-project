@@ -1,7 +1,9 @@
 from .database import Base
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, func, ForeignKey
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
+from pydantic import BaseModel
+
+
 
 class User(Base):
     
