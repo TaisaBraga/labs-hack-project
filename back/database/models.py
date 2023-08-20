@@ -9,6 +9,7 @@ class User(Base):
     name = Column(String, nullable=False)
     email = Column(String, nullable=False)
     password = Column(String, nullable=False)
+    address = Column(String)
     is_fornecedor = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
     created_on = Column(DateTime(timezone=True), server_default=func.now())
