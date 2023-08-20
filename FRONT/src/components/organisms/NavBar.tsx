@@ -7,9 +7,11 @@ import Tooltip from '@mui/material/Tooltip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoImage from '../../images/logo-light-png.png';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import { useNavigate } from 'react-router-dom';
 
 
 export const NavBar = () => {
+  const navigate = useNavigate()
 
   return (
     <AppBar position="static" style={{ backgroundColor: '#7fb77e' }}>
@@ -28,7 +30,7 @@ export const NavBar = () => {
             <Tooltip title="Open settings" sx={{ p: 0, cursor: 'pointer' }}>
               <AccountCircleIcon />
             </Tooltip>
-            <AddBusinessIcon sx={{ p: 0, cursor: 'pointer', margin: '0 0 0 1em' }} />
+            <AddBusinessIcon sx={{ p: 0, cursor: 'pointer', margin: '0 0 0 1em' }} onClick={() => navigate('/shopCar')} />
           </Box>
         </Toolbar>
       </Container>

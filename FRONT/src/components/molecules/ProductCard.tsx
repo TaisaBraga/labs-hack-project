@@ -12,7 +12,7 @@ interface IProducts {
 }
 
 export const ProductCard = (props: IProducts) => {
-  const navigate = useNavigate()
+
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -34,7 +34,7 @@ export const ProductCard = (props: IProducts) => {
           float: 'right',
           cursor: 'pointer'
         }}
-        onClick={() => navigate('/shopCar')}
+
       />
     </Card>
   )
