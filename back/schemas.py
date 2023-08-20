@@ -20,3 +20,8 @@ class ProductEntry(BaseModel):
 class ProductUpdate(BaseModel):
     name: Optional[str]
     description: Optional[str]
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+ 
