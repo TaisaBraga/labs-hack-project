@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=hackaton
+  
+  web:
+    build: .
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=hackaton
+      - DATABASE_USERNAME=postgres
+    command: uvicorn back.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
