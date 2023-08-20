@@ -1,8 +1,6 @@
-from fastapi import APIRouter, HTTPException
-from typing import List
-from back.database import models
+from fastapi import APIRouter
 
-estados_db = [
+estados_db = (
     {'nome': 'Acre', 'sigla': 'AC'},
     {'nome': 'Alagoas', 'sigla': 'AL'},
     {'nome': 'Amapá', 'sigla': 'AP'},
@@ -28,8 +26,11 @@ estados_db = [
     {'nome': 'Santa Catarina', 'sigla': 'SC'},
     {'nome': 'São Paulo', 'sigla': 'SP'},
     {'nome': 'Sergipe', 'sigla': 'SE'},
-    {'nome': 'Tocantins', 'sigla': 'TO'}],
+    {'nome': 'Tocantins', 'sigla': 'TO'}
+)
 
-@router.get('/estados', response_model=List[Estado])
+router =APIRouter()
+
+@router.get('/')
 async def listar_estados():
     return estados_db

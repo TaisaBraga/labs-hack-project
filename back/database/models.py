@@ -36,7 +36,3 @@ class Produto(Base):
     fornecedor = relationship("User", back_populates="produtos_info")
     created_on = Column(DateTime(timezone=True), server_default=func.now())
     updated_on = Column(DateTime(timezone=True), server_onupdate=func.now())
-
-class Estado(BaseModel):
-    nome: str
-    sigla: str
