@@ -28,7 +28,7 @@ export const NavBar = () => {
           />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings" sx={{ p: 0, cursor: 'pointer' }}>
-              <AccountCircleIcon />
+              <AccountCircleIcon onClick={() => navigate('/userRegistration')}/>
             </Tooltip>
             <AddBusinessIcon sx={{ p: 0, cursor: 'pointer', margin: '0 0 0 1em' }} onClick={() => navigate('/shopCar')} />
           </Box>
