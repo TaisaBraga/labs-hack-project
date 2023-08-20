@@ -27,6 +27,13 @@ def get_by_id(fornecedor_id: str, db: Session = Depends(get_db)):
 
 @router.post('/register', status_code=201)
 def register_product(product: schemas.ProductEntry, db: Session = Depends(get_db), current_user: int= Depends(current_User)):
+    
+    user = db.query(models.User).filter_by(email = current_user.email).first()
+    if not user.is_fornecedor:
+        raise HTTPException(
+            status_code=401, detail="É necessário ser um fornecedor para cadastrar produtos."
+        )
+    
     new = models.Produto(**product.model_dump())
     db.add(new)
     try:
@@ -36,8 +43,15 @@ def register_product(product: schemas.ProductEntry, db: Session = Depends(get_db
     except IntegrityError as err:
         raise HTTPException(status_code=409, detail={'message': err.args})
 
+
 @router.patch("/{product_id}", status_code=202)
 def update_product(product_id: str, product: schemas.ProductUpdate ,db: Session = Depends(get_db), current_user: int= Depends(current_User)):
+    user = db.query(models.User).filter_by(email = current_user.email).first()
+    if not user.is_fornecedor:
+        raise HTTPException(
+            status_code=401, detail="É necessário ser um fornecedor para cadastrar produtos."
+        )
+    
     product_query = db.query(models.Produto).filter(models.Produto.id == product_id)
     if current_user.email != product_query.first().fornecedor.email:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail={'message': 'Operação não autorizada'})
@@ -56,6 +70,12 @@ def update_product(product_id: str, product: schemas.ProductUpdate ,db: Session 
 
 @router.delete("/delete/{id}")
 def delete_product(product_id: str, db: Session = Depends(get_db), current_user: int= Depends(current_User)):
+    user = db.query(models.User).filter_by(email = current_user.email).first()
+    if not user.is_fornecedor:
+        raise HTTPException(
+            status_code=401, detail="É necessário ser um fornecedor para cadastrar produtos."
+        )
+    
     product_query = db.query(models.Produto).filter(models.Produto.id == product_id)
     if current_user.email != product_query.first().fornecedor.email:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail={'message': 'Operação não autorizada'})

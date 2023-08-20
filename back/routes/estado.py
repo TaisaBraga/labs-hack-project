@@ -29,7 +29,7 @@ estados_db = (
     {'nome': 'Tocantins', 'sigla': 'TO'}
 )
 
-router =APIRouter()
+router = APIRouter()
 
 @router.get('/')
 async def listar_estados():

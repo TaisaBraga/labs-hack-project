@@ -1,8 +1,25 @@
 from fastapi import FastAPI
-from .routes import user, estado, produto, login
+from fastapi.middleware.cors import CORSMiddleware
+from .routes import user, produto, login, estado
+from .database import models
+from .database.database import engine
+
+app = FastAPI(
+    title="Good2Go",
+    version="1.0"
+)
+
+origins = ["*"]
+
+app.add_middleware(
+	CORSMiddleware,
+	allow_origins=origins,
+	allow_credentials=True,
+	allow_methods=["*"],
+	allow_headers=["*"],
+)
 
 
-app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
 

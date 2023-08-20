@@ -11,8 +11,13 @@ class UserEntry(BaseModel):
     is_fornecedor: Optional[bool] = False
     is_active: Optional[bool] = True
 
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr] = None
+    name: Optional[str] = None
+    address: Optional[str] = None
+    is_active: Optional[bool] = True
+
 class ProductEntry(BaseModel):
-    
     name: str
     description: str
     fornecedor_id: int
